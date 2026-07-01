@@ -18,7 +18,8 @@ import {
   AlertTriangle,
   Info,
   XCircle,
-  Layers
+  Layers,
+  Map
 } from 'lucide-react';
 
 export const DashboardLayout: React.FC = () => {
@@ -32,7 +33,8 @@ export const DashboardLayout: React.FC = () => {
     { name: 'Inicio', path: '/dashboard', icon: LayoutDashboard, roles: ['admin', 'head_scout', 'scout'] },
     { name: 'Jugadores', path: '/players', icon: Users, roles: ['admin', 'head_scout', 'scout'] },
     { name: 'Equipos', path: '/teams', icon: Shield, roles: ['admin', 'head_scout', 'scout'] },
-    { name: 'Campograma', path: '/tactical-board', icon: Layers, roles: ['admin', 'head_scout', 'scout'] },
+    { name: 'Pizarra Táctica', path: '/tactical-board', icon: Layers, roles: ['admin', 'head_scout', 'scout'] },
+    { name: 'Campograma', path: '/campograma', icon: Map, roles: ['admin', 'head_scout', 'scout'] },
     { name: 'Informes', path: '/reports', icon: FileSpreadsheet, roles: ['admin', 'head_scout', 'scout'] },
     { name: 'Rankings', path: '/rankings', icon: TrendingUp, roles: ['admin', 'head_scout', 'scout'] },
     { name: 'Administración', path: '/admin', icon: Settings, roles: ['admin', 'head_scout'] },

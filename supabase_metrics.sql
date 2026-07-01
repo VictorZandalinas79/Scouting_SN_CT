@@ -14,6 +14,9 @@ CREATE TABLE IF NOT EXISTS public.player_match_metrics (
     entradas_exitosas NUMERIC DEFAULT 0,
     precision_entradas_pct NUMERIC DEFAULT 0,
     
+    -- Extensibilidad para el futuro (+100 métricas)
+    metrics JSONB DEFAULT '{}'::jsonb,
+    
     -- Métricas Ofensivas / ABP
     abp_lanzador_corner NUMERIC DEFAULT 0,
     abp_lanzador_corner_p90 NUMERIC DEFAULT 0,
@@ -23,15 +26,20 @@ CREATE TABLE IF NOT EXISTS public.player_match_metrics (
     UNIQUE(match_id, player_id)
 );
 
+-- Asegurar que la columna JSONB existe (por si la tabla ya estaba creada)
+ALTER TABLE public.player_match_metrics ADD COLUMN IF NOT EXISTS metrics JSONB DEFAULT '{}'::jsonb;
+
 -- Habilitar RLS si es necesario, dependiendo de tu configuración
 ALTER TABLE public.player_match_metrics ENABLE ROW LEVEL SECURITY;
 
--- Política de lectura para todos los usuarios autenticados (opcional, ajusta según tu necesidad)
+-- Política de lectura para todos los usuarios autenticados
+DROP POLICY IF EXISTS "Enable read access for all users" ON public.player_match_metrics;
 CREATE POLICY "Enable read access for all users"
     ON public.player_match_metrics FOR SELECT
     USING (true);
 
 -- Política de inserción/actualización/borrado
+DROP POLICY IF EXISTS "Enable all operations for all users" ON public.player_match_metrics;
 CREATE POLICY "Enable all operations for all users"
     ON public.player_match_metrics FOR ALL
     USING (true)

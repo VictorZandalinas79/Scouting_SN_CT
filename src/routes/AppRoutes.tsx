@@ -11,6 +11,7 @@ import { ReportsPage } from '../pages/ReportsPage';
 import { RankingsPage } from '../pages/RankingsPage';
 import { AdminPage } from '../pages/AdminPage';
 import { TacticalBoardPage } from '../pages/TacticalBoardPage';
+import { CampogramaPage } from '../pages/CampogramaPage';
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="reports" element={<ReportsPage />} />
           <Route path="rankings" element={<RankingsPage />} />
           <Route path="tactical-board" element={<TacticalBoardPage />} />
+          <Route path="campograma" element={<CampogramaPage />} />
           {/* Admin routes limited to head_scout and admin */}
           <Route element={<ProtectedRoute allowedRoles={['admin', 'head_scout']} />}>
             <Route path="admin" element={<AdminPage />} />
